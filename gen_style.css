@@ -136,36 +136,12 @@ body{
   .org{
     margin-left: 0px;
   }
-  #textWindow{
-    font-size: 20px;
-  }
   .options{
-    font-size: 20px;
+    font-size: 15px;
+    height: fit-content;
   }
-  
+  #chat{
+    font-size: 25px;
+    height: 40%;
+  }
 }
-
-
-/* 
-#inventory {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  gap: 10px;
-}
-.invslot{
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 2px;
-  border-color: rgb(125, 82, 32);
-  color: rgb(158, 114, 64);
-  transition: transform 0.6s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.invslot:hover{
-  background-color: rgb(125, 82, 32);
-}
-*/
