@@ -137,11 +137,14 @@ body{
     margin-left: 0px;
   }
   .options{
-    font-size: 15px;
+    font-size: 18px;
     height: fit-content;
   }
+  #textWindow{
+    font-size: 20px;
+  }
   #chat{
-    font-size: 25px;
+    font-size: 18px;
     height: 40%;
   }
 }
