@@ -129,11 +129,11 @@ body{
 @media only screen and (max-width: 600px) {
   .writing {
     width: 90%;
-    height: 25vh; 
+    height: 23vh; 
   }
   .text{
     width: 90%;
-    height: 52vh;
+    height: 48vh;
   }
   .org{
     margin-left: 0px;
