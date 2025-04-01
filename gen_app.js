@@ -303,6 +303,7 @@ async function g_converstion(character){
       inputField.addEventListener("keydown",handler)
       function handler(event) {
         if (event.key === "Enter") {
+          event.preventDefault()
           if(inputField.value=="\nr"){regen();return;}
           gameData.entered = inputField.value
           removeButtons()
@@ -375,6 +376,7 @@ async function game(){
   seth("universe", gameData.prompts.deepseekPrompt, 2)
   seth("universe", gameData.prompts.systemPromptGC, 2)
   seth("universe", gameData.prompts.dsBettering, 2)
+  writeText("Write a prompt")
   await g_converstion("universe", 1)
 
 }
