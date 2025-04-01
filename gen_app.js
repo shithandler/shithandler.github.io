@@ -283,7 +283,7 @@ async function g_converstion(character){
           clearCache()
           clearWriteArea()
           resolve();
-          hideInputField()
+          //hideInputField()
           inputField.removeEventListener("keydown", handler);
           //inventory[21].removeEventListener("click", regen);
         }
