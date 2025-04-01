@@ -137,6 +137,9 @@ body{
   .org{
     margin-left: 0px;
   }
+  body{
+    font-size: 15px !important;
+  }
 
 }
 
