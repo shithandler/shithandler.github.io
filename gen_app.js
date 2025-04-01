@@ -10,7 +10,7 @@ else{
   gameData = {
     talking: "off",
     charDelay: true,
-    charDelayVal: 50,
+    charDelayVal: 30,
     entered: "",
     resp: "",
     progress: [],
@@ -29,11 +29,10 @@ else{
     }
   }
 }
-
 //elements
 const inputField = document.getElementById("chat");
 const outputField = document.getElementById("textWindow")
-//const inventory = document.querySelectorAll(".invslot");
+const inventory = document.querySelectorAll(".invslot");
 function hideInputField(){inputField.style.display = "none";}
 function showInputField(){inputField.style.display = "block";}
 function removeButtons(){document.querySelector("#buttons").innerHTML = "";}
@@ -53,7 +52,7 @@ function unwrite(n=1){
     outputField.removeChild(outputField.lastElementChild)
   }
 }
-/* 
+
 (function setting(){
   inventory[23].innerHTML = `<i class="fa-solid fa-stopwatch"></i>`
   inventory[23].addEventListener("click", () => {
@@ -78,7 +77,7 @@ function unwrite(n=1){
   inventory[23].innerHTML = `<i class="fa-solid fa-stopwatch"></i>`
   
 })()
-*/
+
 function writeText(text, delay = gameData.charDelayVal) {
   return new Promise((resolve, reject) => {
     text += "\u200B"
@@ -207,7 +206,7 @@ async function buttonPress() {
     }
   });
 }
-/* 
+
 async function converstion(character){
 
   async function converstionHandler(){
@@ -270,26 +269,51 @@ async function converstion(character){
     
   }
   await writeText(`Bye ${character}`);
-}
- */
+} 
+
+
 async function g_converstion(character){
   async function converstionHandler(){
-    return new Promise((resolve) => {
+    return new Promise((resolve) => {        
+      function regen() {
+        removeButtons()
+        clearCache()
+  
+        gameData.characters[character].chatHistory.pop()
+        gameData.characters[character].chatHistory.pop()
+  
+        if(inputField.value&&inputField.value!="\nr"){gameData.entered = inputField.value}
+  
+        let x = outputField.innerHTML
+        x = x.split("<br>")
+        x.pop()
+        x.pop()
+        x.pop() //lets try this
+        x = x.join("<br>")
+        outputField.innerHTML = `${x}<br>`
+      
+        resolve();
+        clearWriteArea()
+        inputField.removeEventListener("keydown", handler);
+        inventory[21].removeEventListener("click", regen);
+        console.log(gameData.entered)
+        console.log(gameData.characters[character].chatHistory)
+        //seth(character, gameData.entered)
+      }
       inputField.addEventListener("keydown",handler)
       function handler(event) {
         if (event.key === "Enter") {
+          if(inputField.value=="\nr"){regen();return;}
           gameData.entered = inputField.value
           removeButtons()
           clearCache()
           clearWriteArea()
           resolve();
-          //hideInputField()
           inputField.removeEventListener("keydown", handler);
-          //inventory[21].removeEventListener("click", regen);
+          inventory[21].removeEventListener("click", regen);
         }
       }
-
-      //inventory[21].addEventListener('click',regen)
+      inventory[21].addEventListener('click',regen)
       if(gameData.characters[character].chatHistory.length>4){
         let msg = gameData.characters[character].chatHistory[gameData.characters[character].chatHistory.length - 1].content
         msg = msg.split("●")
@@ -314,38 +338,12 @@ async function g_converstion(character){
 
   while(true){
     await converstionHandler()
-    if(gameData.entered == "endConv"){break}
-    function regen() {
-      removeButtons()
-      clearCache()
-
-      gameData.characters[character].chatHistory.pop()
-      gameData.characters[character].chatHistory.pop()
-
-      if(inputField.value){gameData.entered = inputField.value}
-
-
-      let x = outputField.innerHTML
-      x = x.split("<br>")
-      x.pop()
-      x.pop()
-      x.pop() //lets try this
-      x = x.join("<br>")
-      outputField.innerHTML = `${x}<br>`
-    
-      resolve();
-      clearWriteArea()
-      inputField.removeEventListener("keydown", handler);
-      //inventory[21].removeEventListener("click", regen);
-    }
-    if(gameData.entered =="r"){regen()}
     await writeText(gameData.entered, 10)
     await sendMessage(character, gameData.entered)
     await writeText(gameData.characters[character].chatHistory[gameData.characters[character].chatHistory.length - 1].content.split("●")[0])
-    console.log(gameData.characters[character].chatHistory)
   }
-  await writeText(`Bye ${character}`);
 }
+
 function seth(character, message, role=0){
   if(role == 1){role = "assistant"}
   else if(role == 2){role = "system"}
@@ -369,6 +367,7 @@ async function ini(){
   }
   io = await decryptAPIKey("c2stYTJhZGQ1ZjBlMjVhNGZiODk1ZTk1NWFlYjJmMDk3MGFjMTYwZGJiZTgyNGI3NDYy", gameData.entered)
   clearTextArea()
+
 }
 
 async function game(){
@@ -376,12 +375,6 @@ async function game(){
   seth("universe", gameData.prompts.deepseekPrompt, 2)
   seth("universe", gameData.prompts.systemPromptGC, 2)
   seth("universe", gameData.prompts.dsBettering, 2)
-  writeText(`Write any fantasy`)
-
-/*   await textEnter()
-  clearTextArea()
-  seth("universe", gameData.entered) */
-
   await g_converstion("universe", 1)
 
 }
