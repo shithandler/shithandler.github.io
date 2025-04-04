@@ -31,3 +31,5 @@ function gotochat(name){}
 
 
 //https://shithandler.github.io/newui/
+
+//https://htmlpreview.github.io/?https://github.com/twbs/bootstrap/gh-pages/2.3.2/index.html
