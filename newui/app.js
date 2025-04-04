@@ -28,3 +28,6 @@ function addChat(name){
   menu.appendChild(a)
 }
 function gotochat(name){}
+
+
+//https://shithandler.github.io/newui/
