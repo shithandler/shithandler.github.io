@@ -9,7 +9,7 @@ if(localStorage.getItem("gameData")){
 else{
   gameData = {
     talking: "off",
-    charDelay: true,
+    charDelay: false,
     charDelayVal: 30,
     entered: "",
     resp: "",
