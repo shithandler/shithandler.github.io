@@ -83,11 +83,33 @@ body{
   word-wrap: break-word;
 }
 
-#buttons{
-  width: 100%;
-  height: 15%;
+.message{
+  outline: none;
+  user-select: text;
+}
+
+#inventory {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 10px;
+}
+.invslot{
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: rgb(125, 82, 32);
+  color: rgb(158, 114, 64);
+  transition: transform 0.6s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
+.invslot:hover{
+  background-color: rgb(125, 82, 32);
+}
+
 .options{
   background-color: rgb(27, 27, 30);
   color: rgb(125, 82, 32);
@@ -95,8 +117,7 @@ body{
   border-color: rgb(125, 82, 32);
   border-radius: 7px;
   font-size: 25px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 5px;
 }
 .options:hover{
   background-color: rgb(125, 82, 32);
@@ -125,42 +146,32 @@ body{
   100% { color: rgb(27, 27, 30); }
 }
 
-
 @media only screen and (max-width: 600px) {
   .writing {
     width: 90%;
-    height: 23vh; 
+    height: 25vh; 
   }
   .text{
     width: 90%;
-    height: 48vh;
+    height: 52vh;
   }
   .org{
     margin-left: 0px;
   }
-
+  #buttons{
+    height: fit-content;
+  }
+  .options{
+    font-size: 18px;
+  }
+  #textWindow{
+    font-size: 18px;
+  }
+  #chat{
+    font-size: 18px;
+    height: 40%;
+  }
+  #inventory {
+    display: none;
+  }
 }
-
-/* 
-#inventory {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  gap: 10px;
-}
-.invslot{
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 2px;
-  border-color: rgb(125, 82, 32);
-  color: rgb(158, 114, 64);
-  transition: transform 0.6s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.invslot:hover{
-  background-color: rgb(125, 82, 32);
-}
-*/
