@@ -48,12 +48,13 @@ function unwrite(n=1){
 function getChanges() {
   let divs = outputField.children
   chat = []
+  chat.push({ role: "system", content: prompts.deepseekPrompt})
+  chat.push({ role: "system", content: prompts.dsBettering})
   for (let i = 0; i < divs.length; i++) {
     let className = divs[i].classList[1]
     let content = (divs[i].innerHTML).replace(/<br>/g, '\n')
     chat.push({ role: className, content: content})
   }
-  console.log(chat)
   save()
 }
 
