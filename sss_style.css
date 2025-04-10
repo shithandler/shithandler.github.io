@@ -158,4 +158,12 @@ body{
     font-size: 18px;
     height: 40%;
   }
+  .user{
+    border-style: solid;
+    padding: 6px;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: rgb(125, 82, 32);
+    margin: 10px;
+  }
 }
