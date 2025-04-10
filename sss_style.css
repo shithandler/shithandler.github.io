@@ -16,21 +16,16 @@ body{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 15%;
+  justify-content: center;
 }
 .text{
-  width: 70%; 
-  height: 58vh;  
-  padding: 10px; 
-}
-.inventory{
-  width: 15%; 
-  height: 58vh; 
+  width: 80%; 
+  height: 65vh;  
   padding: 10px; 
 }
 .writing{
-  width: 70%; 
-  height: 28vh; 
+  width: 80%; 
+  height: 22vh; 
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -74,7 +69,7 @@ body{
   margin: 10px;
   border: none;
   outline: none;
-  height: 70%;
+  height: 100%;
   color: aliceblue;
   font-size: 25px;
   text-align: center;
@@ -88,26 +83,18 @@ body{
   user-select: text;
 }
 
-#inventory {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  gap: 10px;
-}
-.invslot{
+.user{
   border-style: solid;
+  padding: 6px;
   border-radius: 10px;
-  border-width: 2px;
+  border-width: 1px;
   border-color: rgb(125, 82, 32);
-  color: rgb(158, 114, 64);
-  transition: transform 0.6s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  margin: 10px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
-.invslot:hover{
-  background-color: rgb(125, 82, 32);
+.assistant{
+
 }
 
 .options{
@@ -170,8 +157,5 @@ body{
   #chat{
     font-size: 18px;
     height: 40%;
-  }
-  #inventory {
-    display: none;
   }
 }

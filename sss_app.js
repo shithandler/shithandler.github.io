@@ -63,7 +63,6 @@ function writeText(text, role=0){
   let div = document.createElement("div")
   div.className = `message ${role}`
   div.innerHTML = text.replace(/\n/g, '<br>')
-  div.style.borderStyle = "none"
   div.onclick = ()=>{makeEditable(div)}
   outputField.appendChild(div)
   outputField.scrollTop = outputField.scrollHeight;
@@ -105,7 +104,7 @@ function waitingFeedback(){
 
 async function ini(){
   clearTextArea()
-  writeText("Password")
+  writeText("Password", 1)
   await textEnter()
   async function hashPassword(password) {
     const hashBuffer = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(password));
