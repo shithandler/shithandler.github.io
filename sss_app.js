@@ -69,7 +69,7 @@ function writeText(text, role=0){
   outputField.scrollTop = outputField.scrollHeight;
 }
 
-async function sendMessage() {
+async function sendMessage(modelused, tmptr=1.0) {
   waitingFeedback()
   const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
     method: "POST",
@@ -78,8 +78,9 @@ async function sendMessage() {
         "Authorization": `Bearer ${io}`
     },
     body: JSON.stringify({
-        model: "deepseek-chat",
-        messages: chat
+        model: modelused,
+        messages: chat,
+        temperature: tmptr 
     })
   });
 
@@ -167,14 +168,29 @@ function makeEditable(el) {
 }
 
 async function conversation() {
+  let modelused = "deepseek-chat"
+  let tmptr = 1.0
   while (true) {
     if(chat[chat.length-1].role == "user"){
-      await sendMessage()
+      await sendMessage(modelused, tmptr)
     }
 
     await textEnter()
     if (entered == "r") {await regenerate();continue}
     if (entered == "newGame") {restart(); break}
+
+    if(entered.includes("gosmart")){modelused = "deepseek-reasoner"}
+    else{modelused = "deepseek-chat"}
+    entered = entered.replace(/gosmart/g, "")
+
+    if (!isNaN(parseFloat(entered))){ tmptr = parseFloat(entered); 
+    console.log(modelused)
+    console.log(tmptr)
+    continue}
+
+    
+    console.log(modelused)
+    console.log(tmptr)
 
     chat.push({ role: "user", content: entered})
     writeText(entered)
