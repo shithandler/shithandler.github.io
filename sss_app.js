@@ -183,7 +183,7 @@ async function conversation() {
     else{modelused = "deepseek-chat"}
     entered = entered.replace(/gosmart/g, "")
 
-    if (!isNaN(parseFloat(entered))){ tmptr = parseFloat(entered); 
+    if (entered.length == 3 && !isNaN(parseFloat(entered))){ tmptr = parseFloat(entered); 
     console.log(modelused)
     console.log(tmptr)
     continue}
