@@ -176,7 +176,7 @@ async function conversation() {
     }
 
     await textEnter()
-    if (entered == "r") {await regenerate();continue}
+    if (entered == "r") {await regenerate(modelused, tmptr);continue}
     if (entered == "newGame") {restart(); break}
 
     if(entered.includes("gosmart")){modelused = "deepseek-reasoner"}
@@ -184,13 +184,7 @@ async function conversation() {
     entered = entered.replace(/gosmart/g, "")
 
     if (entered.length <5 && !isNaN(parseFloat(entered))){ tmptr = parseFloat(entered); 
-    console.log(modelused)
-    console.log(tmptr)
     continue}
-
-    
-    console.log(modelused)
-    console.log(tmptr)
 
     chat.push({ role: "user", content: entered})
     writeText(entered)
@@ -202,11 +196,11 @@ function restart(){
   clearTextArea()
 }
 
-async function regenerate(){
+async function regenerate(modelused, tmptr){
   if(chat.length>1){
     chat.pop()
     unwrite()
-    await sendMessage()
+    await sendMessage(modelused, tmptr)
   }
 }
 
